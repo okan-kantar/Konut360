@@ -28,21 +28,24 @@ export default function Topbar() {
   const [title, subtitle] = getRouteMeta(pathname);
   const [q, setQ] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevQ = useRef(q);
 
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
+    const wasSearching = prevQ.current.trim();
     timerRef.current = setTimeout(() => {
       const trimmed = q.trim();
       if (trimmed) {
         router.push(`/daireler?q=${encodeURIComponent(trimmed)}`);
-      } else if (pathname.startsWith("/daireler")) {
+      } else if (wasSearching && pathname.startsWith("/daireler")) {
         router.push("/daireler");
       }
     }, 350);
+    prevQ.current = q;
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [q, pathname, router]);
+  }, [q, router, pathname]);
 
   return (
     <header className="h-[66px] flex-none bg-white border-b border-card-border flex items-center px-7.5 gap-5 sticky top-0 z-30">
