@@ -104,17 +104,22 @@ export default async function proxy(request: NextRequest) {
     return withSecurityHeaders(NextResponse.next());
   }
 
+  const isLoginPage = pathname === "/giris" || pathname === "/sistem-admin/giris";
+
+  if (isLoginPage) {
+    if (session) {
+      return withSecurityHeaders(
+        NextResponse.redirect(new URL(ROLE_HOME_PATH[session.rol], request.url)),
+      );
+    }
+    return withSecurityHeaders(NextResponse.next());
+  }
+
   const match = matchProtected(pathname);
   if (match) {
     if (!session || !match.roles.includes(session.rol)) {
       return withSecurityHeaders(NextResponse.redirect(new URL(match.loginPath, request.url)));
     }
-  }
-
-  if ((pathname === "/giris" || pathname === "/sistem-admin/giris") && session) {
-    return withSecurityHeaders(
-      NextResponse.redirect(new URL(ROLE_HOME_PATH[session.rol], request.url)),
-    );
   }
 
   return withSecurityHeaders(NextResponse.next());
