@@ -42,3 +42,7 @@ next-env.d.ts
 
 .env.local
 .env.example
+/atlas-credentials.env
+atlas-credentials.env
+.atlas-credentials.env
+./atlas-credentials.env
