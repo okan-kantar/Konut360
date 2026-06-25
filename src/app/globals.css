@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --accent: #2d5bff;
+  --navy: #0e1b33;
+  --bg: #f4f6fa;
+  --card-border: #eaeef4;
+  --ink: #16213a;
+  --ink-soft: #6b7791;
+  --ink-faint: #8a95a8;
+  --success-bg: #e7f6ec;
+  --success-fg: #1b7a3d;
+  --success-dot: #22a153;
+  --warning-bg: #fef6e7;
+  --warning-fg: #b7791f;
+  --warning-dot: #e0a526;
+  --danger-bg: #fcedec;
+  --danger-fg: #c0392b;
+  --danger-dot: #e1483a;
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-navy: var(--navy);
+  --color-bg: var(--bg);
+  --color-card-border: var(--card-border);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-success-bg: var(--success-bg);
+  --color-success-fg: var(--success-fg);
+  --color-success-dot: var(--success-dot);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-fg: var(--warning-fg);
+  --color-warning-dot: var(--warning-dot);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-fg: var(--danger-fg);
+  --color-danger-dot: var(--danger-dot);
+  --font-sans: var(--font-hanken);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d5dce8;
+  border-radius: 8px;
+  border: 2px solid var(--bg);
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}

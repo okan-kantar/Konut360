@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Hanken Grotesk',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1;background:#F4F6FA;color:#16213A}
+button{font-family:inherit}
+input,select{font-family:inherit;outline:none}
+input:focus,select:focus{border-color:var(--accent,#2D5BFF)!important;box-shadow:0 0 0 3px color-mix(in srgb, var(--accent,#2D5BFF) 14%, transparent)}
+::selection{background:var(--accent,#2D5BFF);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#D5DCE8;border-radius:8px;border:2px solid #F4F6FA}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<div style="{{ shellStyle }}">
+
+<!-- ================= LOGIN ================= -->
+<sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Giriş" style="min-height:100vh;display:flex">
+  <div style="flex:1.05;background:linear-gradient(160deg,#0E1B33 0%,#13264a 60%,#0c1730 100%);color:#fff;padding:56px 56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-120px;right:-100px;width:340px;height:340px;border-radius:50%;background:var(--accent,#2D5BFF);opacity:.16;filter:blur(8px)"></div>
+    <div style="display:flex;align-items:center;gap:13px;position:relative">
+      <div style="width:42px;height:42px;border-radius:12px;background:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center">
+        <svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.7"><rect x="4" y="3" width="9" height="14" rx="1.2"></rect><rect x="13" y="8" width="3.5" height="9" rx="1"></rect><line x1="6.5" y1="6" x2="7.5" y2="6"></line><line x1="9.5" y1="6" x2="10.5" y2="6"></line><line x1="6.5" y1="9.5" x2="7.5" y2="9.5"></line><line x1="9.5" y1="9.5" x2="10.5" y2="9.5"></line></svg>
+      </div>
+      <div style="font-size:20px;font-weight:800;letter-spacing:-.02em">Konut<span style="color:var(--accent,#2D5BFF)">360</span></div>
+    </div>
+    <div style="position:relative;max-width:440px">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.14em;color:#7E8DB0;text-transform:uppercase;margin-bottom:18px">Site Yönetim Sistemi</div>
+      <h1 style="font-size:40px;line-height:1.12;font-weight:800;letter-spacing:-.025em;margin:0 0 20px">Aidattan kasaya,<br>tüm yönetim tek panelde.</h1>
+      <p style="font-size:16px;line-height:1.6;color:#A7B2CC;margin:0 0 34px">Çok siteli yapı, otomatik gecikme faizi, kasa takibi ve sakin bilgilendirme — apartman ve site yönetimi için uçtan uca dijital çözüm.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:12px;font-size:14.5px;color:#C7D0E4"><span style="width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="var(--accent,#2D5BFF)" stroke-width="2.4"><polyline points="4,11 8,15 16,5"></polyline></svg></span>Dönemsel aidat tahakkuk &amp; otomatik faiz</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14.5px;color:#C7D0E4"><span style="width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="var(--accent,#2D5BFF)" stroke-width="2.4"><polyline points="4,11 8,15 16,5"></polyline></svg></span>Çoklu kasa &amp; gelir-gider mutabakatı</div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14.5px;color:#C7D0E4"><span style="width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="var(--accent,#2D5BFF)" stroke-width="2.4"><polyline points="4,11 8,15 16,5"></polyline></svg></span>Sakin self-servis borç &amp; ödeme görünümü</div>
+      </div>
+    </div>
+    <div style="position:relative;font-size:13px;color:#6E7C9C">© 2026 Konut360 · Çok kiracılı (multi-tenant) yapı</div>
+  </div>
+
+  <div style="flex:.95;display:flex;align-items:center;justify-content:center;padding:40px;background:#F4F6FA">
+    <div style="width:100%;max-width:392px">
+      <h2 style="font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px">Tekrar hoş geldiniz</h2>
+      <p style="font-size:14.5px;color:#6B7791;margin:0 0 28px">Yönetim panelinize giriş yapın.</p>
+
+      <div style="display:flex;gap:8px;background:#EAEEF5;padding:4px;border-radius:11px;margin-bottom:22px">
+        <button onClick="{{ setRoleYonetici }}" style="{{ roleYoneticiStyle }}">Site Yöneticisi</button>
+        <button onClick="{{ setRoleSakin }}" style="{{ roleSakinStyle }}">Site Sakini</button>
+      </div>
+
+      <label style="display:block;font-size:12.5px;font-weight:700;color:#3C4660;margin-bottom:7px">Site</label>
+      <select defaultValue="Park Vadi Sitesi" style="width:100%;padding:12px 14px;border:1px solid #DCE2EC;border-radius:11px;background:#fff;font-size:14px;font-weight:600;color:#16213A;margin-bottom:16px;appearance:none">
+        <option>Park Vadi Sitesi</option>
+        <option>Çamlık Konutları</option>
+        <option>Marina Residence</option>
+      </select>
+
+      <label style="display:block;font-size:12.5px;font-weight:700;color:#3C4660;margin-bottom:7px">Kullanıcı Adı</label>
+      <input type="text" defaultValue="{{ loginUser }}" style="width:100%;padding:12px 14px;border:1px solid #DCE2EC;border-radius:11px;background:#fff;font-size:14px;color:#16213A;margin-bottom:16px"/>
+
+      <label style="display:block;font-size:12.5px;font-weight:700;color:#3C4660;margin-bottom:7px">Şifre</label>
+      <input type="password" defaultValue="parkvadi2026" style="width:100%;padding:12px 14px;border:1px solid #DCE2EC;border-radius:11px;background:#fff;font-size:14px;color:#16213A;margin-bottom:22px"/>
+
+      <button onClick="{{ doLogin }}" style="width:100%;padding:13px;border:none;border-radius:11px;background:var(--accent,#2D5BFF);color:#fff;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px color-mix(in srgb, var(--accent,#2D5BFF) 28%, transparent)">Giriş Yap →</button>
+      <p style="text-align:center;font-size:12.5px;color:#98A2B3;margin:18px 0 0">Demo hesabı · şifre alanı dolu gelir, doğrudan giriş yapabilirsiniz</p>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ================= SAKIN (MOBILE) ================= -->
+<sc-if value="{{ isSakin }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Sakin Görünümü" style="min-height:100vh;background:#F4F6FA;display:flex;flex-direction:column">
+
+  <!-- web header -->
+  <header style="background:#fff;border-bottom:1px solid #EAEEF4;padding:0 24px;height:64px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:20">
+    <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
+      <div style="width:34px;height:34px;border-radius:10px;background:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center;flex:none"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.7"><rect x="4" y="3" width="9" height="14" rx="1.2"></rect><rect x="13" y="8" width="3.5" height="9" rx="1"></rect></svg></div>
+      <div style="font-size:16px;font-weight:800;letter-spacing:-.02em">Konut<span style="color:var(--accent,#2D5BFF)">360</span></div>
+      <span style="font-size:13px;color:#8A95A8;font-weight:600;margin-left:6px;white-space:nowrap">· Sakin Portalı</span>
+    </div>
+    <div style="display:flex;gap:6px;background:#EFF2F7;padding:4px;border-radius:10px">
+      <button onClick="{{ setSakinWeb }}" style="{{ sakinWebTab }}"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="14" height="10" rx="1.6"></rect><line x1="7" y1="17" x2="13" y2="17"></line></svg>Web</button>
+      <button onClick="{{ setSakinMobil }}" style="{{ sakinMobilTab }}"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="3" width="8" height="14" rx="1.8"></rect><line x1="9" y1="14.5" x2="11" y2="14.5"></line></svg>Mobil</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding-left:6px;border-left:1px solid #EAEEF4">
+      <div style="width:36px;height:36px;border-radius:10px;background:var(--accent,#2D5BFF);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">AD</div>
+      <div style="line-height:1.2"><div style="font-size:13.5px;font-weight:700">Ayşe Demir</div><div style="font-size:12px;color:#8A95A8">A-7 · Kiracı</div></div>
+      <button onClick="{{ goLogin }}" title="Çıkış" style="width:36px;height:36px;border:1px solid #EAEEF4;border-radius:10px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#8A95A8"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 4H5a1.5 1.5 0 0 0-1.5 1.5v9A1.5 1.5 0 0 0 5 16h3"></path><polyline points="12,13 16,10 12,7"></polyline><line x1="16" y1="10" x2="8" y2="10"></line></svg></button>
+    </div>
+  </header>
+
+  <!-- WEB VIEW -->
+  <sc-if value="{{ isSakinWeb }}" hint-placeholder-val="{{ true }}">
+  <div style="flex:1;padding:32px 24px 56px;animation:fadeUp .3s ease">
+    <div style="max-width:1040px;margin:0 auto">
+      <div style="margin-bottom:24px">
+        <h1 style="font-size:25px;font-weight:800;letter-spacing:-.02em;margin:0 0 5px">Merhaba Ayşe,</h1>
+        <p style="font-size:14.5px;color:#6B7791;margin:0">Park Vadi Sitesi · A-7 dairesi · Haziran 2026 dönemi</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <!-- borç -->
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;padding:26px;box-shadow:0 1px 3px rgba(16,24,40,.05);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:12.5px;font-weight:700;color:#6B7791;text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px">Güncel Borç</div>
+              <div style="display:flex;align-items:baseline;gap:11px;margin-bottom:6px">
+                <div style="font-size:38px;font-weight:800;letter-spacing:-.025em">₺1.788</div>
+                <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:#FCEDEC;color:#C0392B;font-size:12px;font-weight:700"><span style="width:6px;height:6px;border-radius:50%;background:#E1483A"></span>Gecikti</span>
+              </div>
+              <div style="font-size:13.5px;color:#6B7791">Haziran 2026 aidatı · ₺1.750 + ₺38 gecikme faizi</div>
+            </div>
+            <button onClick="{{ sakinOde }}" style="padding:14px 24px;border:none;border-radius:12px;background:var(--accent,#2D5BFF);color:#fff;font-size:14.5px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px color-mix(in srgb, var(--accent,#2D5BFF) 26%, transparent);white-space:nowrap">Ödeme Talimatı Oluştur</button>
+          </div>
+
+          <!-- geçmiş -->
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(16,24,40,.05)">
+            <div style="padding:18px 22px;border-bottom:1px solid #F0F2F7;font-size:15px;font-weight:700">Ödeme &amp; Borç Geçmişi</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 22px;border-bottom:1px solid #F6F7FA"><div><div style="font-size:14px;font-weight:700">Haziran 2026 Aidatı</div><div style="font-size:12.5px;color:#98A2B3">Cari dönem · faiz işliyor</div></div><div style="display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:700">₺1.788</span><span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:#FCEDEC;color:#C0392B;font-size:12px;font-weight:700">Gecikti</span></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 22px;border-bottom:1px solid #F6F7FA"><div><div style="font-size:14px;font-weight:700">Mayıs 2026 Aidatı</div><div style="font-size:12.5px;color:#98A2B3">04 May 2026 · Havale ile ödendi</div></div><div style="display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:700">₺1.750</span><span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:#E7F6EC;color:#1B7A3D;font-size:12px;font-weight:700">Ödendi</span></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 22px;border-bottom:1px solid #F6F7FA"><div><div style="font-size:14px;font-weight:700">Nisan 2026 Aidatı</div><div style="font-size:12.5px;color:#98A2B3">02 Nis 2026 · Havale ile ödendi</div></div><div style="display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:700">₺1.750</span><span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:#E7F6EC;color:#1B7A3D;font-size:12px;font-weight:700">Ödendi</span></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 22px"><div><div style="font-size:14px;font-weight:700">Cephe Yenileme Katkı Payı</div><div style="font-size:12.5px;color:#98A2B3">Ek ödenek · son ödeme 31 Tem 2026</div></div><div style="display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:700">₺3.500</span><span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:#FEF6E7;color:#B7791F;font-size:12px;font-weight:700">Bekliyor</span></div></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <!-- özet -->
+          <div style="background:#0E1B33;border-radius:16px;padding:22px;color:#fff;box-shadow:0 10px 28px rgba(14,27,51,.2)">
+            <div style="font-size:12.5px;font-weight:700;color:#9AA7C2;margin-bottom:14px">2026 Özetim</div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:13.5px"><span style="color:#A7B2CC">Toplam ödenen</span><span style="font-weight:700">₺8.750</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:13.5px"><span style="color:#A7B2CC">Bekleyen</span><span style="font-weight:700;color:#FFC56B">₺5.288</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13.5px"><span style="color:#A7B2CC">Zamanında ödeme</span><span style="font-weight:700">%83</span></div>
+          </div>
+          <!-- iletişim -->
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;padding:22px;box-shadow:0 1px 3px rgba(16,24,40,.05)">
+            <div style="font-size:15px;font-weight:700;margin-bottom:14px">İletişim Bilgilerim</div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F4F6FA;font-size:13.5px"><span style="color:#6B7791">Telefon</span><span style="font-weight:700">0541 663 20 04</span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F4F6FA;font-size:13.5px"><span style="color:#6B7791">E-posta</span><span style="font-weight:700"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3d2cac0d69dd7d6dedac1f3d4ded2dadf9dd0dcde">[email&#160;protected]</a></span></div>
+            <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:13.5px"><span style="color:#6B7791">Araç Plakası</span><span style="font-weight:700">06 BK 4471</span></div>
+            <button onClick="{{ sakinGuncelle }}" style="width:100%;margin-top:14px;padding:10px;border:1px solid #DCE2EC;border-radius:10px;background:#fff;color:#3C4660;font-size:13px;font-weight:700;cursor:pointer">Bilgilerimi Güncelle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- MOBILE VIEW -->
+  <sc-if value="{{ isSakinMobil }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:36px 24px;background:radial-gradient(circle at 50% 0,#16264a,#0c1526);animation:fadeUp .3s ease">
+  <div style="width:340px;height:710px;background:#0b1322;border-radius:46px;padding:11px;box-shadow:0 40px 80px rgba(0,0,0,.5);position:relative;flex:none">
+    <div style="position:absolute;top:20px;left:50%;transform:translateX(-50%);width:118px;height:26px;background:#0b1322;border-radius:0 0 16px 16px;z-index:5"></div>
+    <div style="width:100%;height:100%;background:#F4F6FA;border-radius:36px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="background:var(--accent,#2D5BFF);padding:46px 20px 20px;color:#fff">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+          <div style="font-size:12.5px;font-weight:700;opacity:.85">Park Vadi Sitesi</div>
+          <button onClick="{{ goLogin }}" style="background:rgba(255,255,255,.16);border:none;color:#fff;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:8px;cursor:pointer">Çıkış</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800">AD</div>
+          <div>
+            <div style="font-size:17px;font-weight:800">Ayşe Demir</div>
+            <div style="font-size:12.5px;opacity:.85">A-7 · Kiracı</div>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:18px 16px 26px">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(16,24,40,.05)">
+          <div style="font-size:12px;font-weight:700;color:#6B7791;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">Güncel Borç</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+            <div style="font-size:30px;font-weight:800;letter-spacing:-.02em">₺1.788</div>
+            <span style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;background:#FCEDEC;color:#C0392B;font-size:11.5px;font-weight:700"><span style="width:6px;height:6px;border-radius:50%;background:#E1483A"></span>Gecikti</span>
+          </div>
+          <div style="font-size:12.5px;color:#6B7791;margin-bottom:14px">Haziran 2026 aidatı · ₺1.750 + ₺38 gecikme faizi</div>
+          <button onClick="{{ sakinOde }}" style="width:100%;padding:12px;border:none;border-radius:11px;background:var(--accent,#2D5BFF);color:#fff;font-size:14px;font-weight:700;cursor:pointer">Ödeme Talimatı Oluştur</button>
+        </div>
+
+        <div style="font-size:12.5px;font-weight:800;color:#3C4660;margin:18px 4px 10px">Ödeme Geçmişi</div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid #F0F2F7"><div><div style="font-size:13.5px;font-weight:700">Mayıs 2026</div><div style="font-size:11.5px;color:#98A2B3">04 May ödendi</div></div><span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#1B7A3D">₺1.750</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid #F0F2F7"><div><div style="font-size:13.5px;font-weight:700">Nisan 2026</div><div style="font-size:11.5px;color:#98A2B3">02 Nis ödendi</div></div><span style="font-size:12px;font-weight:700;color:#1B7A3D">₺1.750</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 16px"><div><div style="font-size:13.5px;font-weight:700">Cephe Yenileme</div><div style="font-size:11.5px;color:#98A2B3">Ek ödenek · 31 Tem son ödeme</div></div><span style="display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;background:#FEF6E7;color:#B7791F;font-size:11px;font-weight:700">Bekliyor</span></div>
+        </div>
+
+        <div style="font-size:12.5px;font-weight:800;color:#3C4660;margin:18px 4px 10px">İletişim Bilgilerim</div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;padding:6px 16px">
+          <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #F4F6FA;font-size:13px"><span style="color:#6B7791">Telefon</span><span style="font-weight:700">0541 663 20 04</span></div>
+          <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #F4F6FA;font-size:13px"><span style="color:#6B7791">E-posta</span><span style="font-weight:700"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3b5a42485e155f5e5652497b5c565a525715585456">[email&#160;protected]</a></span></div>
+          <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13px"><span style="color:#6B7791">Araç Plakası</span><span style="font-weight:700">06 BK 4471</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- ================= APP SHELL ================= -->
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;min-height:100vh">
+
+  <!-- SIDEBAR -->
+  <aside style="width:248px;flex:none;background:#0E1B33;color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh">
+    <div style="padding:22px 20px 16px;display:flex;align-items:center;gap:11px;border-bottom:1px solid rgba(255,255,255,.06)">
+      <div style="width:36px;height:36px;border-radius:10px;background:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center;flex:none">
+        <svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.7"><rect x="4" y="3" width="9" height="14" rx="1.2"></rect><rect x="13" y="8" width="3.5" height="9" rx="1"></rect></svg>
+      </div>
+      <div style="font-size:17px;font-weight:800;letter-spacing:-.02em">Konut<span style="color:var(--accent,#2D5BFF)">360</span></div>
+    </div>
+
+    <nav style="flex:1;overflow-y:auto;padding:16px 14px">
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#5E6E92;text-transform:uppercase;padding:0 10px;margin-bottom:8px">Genel</div>
+      <button onClick="{{ nav.dashboard.onClick }}" style="{{ nav.dashboard.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="6" height="6" rx="1.5"></rect><rect x="11" y="3" width="6" height="6" rx="1.5"></rect><rect x="3" y="11" width="6" height="6" rx="1.5"></rect><rect x="11" y="11" width="6" height="6" rx="1.5"></rect></svg>Genel Bakış</button>
+
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#5E6E92;text-transform:uppercase;padding:0 10px;margin:18px 0 8px">Tahsilat</div>
+      <button onClick="{{ nav.aidat.onClick }}" style="{{ nav.aidat.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="4.2" cy="5.5" r="1"></circle><line x1="7.5" y1="5.5" x2="17" y2="5.5"></line><circle cx="4.2" cy="10" r="1"></circle><line x1="7.5" y1="10" x2="17" y2="10"></line><circle cx="4.2" cy="14.5" r="1"></circle><line x1="7.5" y1="14.5" x2="17" y2="14.5"></line></svg>Aidat Listesi</button>
+      <button onClick="{{ nav.ekodenek.onClick }}" style="{{ nav.ekodenek.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10" cy="10" r="7"></circle><line x1="10" y1="7" x2="10" y2="13"></line><line x1="7" y1="10" x2="13" y2="10"></line></svg>Ek Ödenekler</button>
+
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#5E6E92;text-transform:uppercase;padding:0 10px;margin:18px 0 8px">Finans</div>
+      <button onClick="{{ nav.finans.onClick }}" style="{{ nav.finans.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="14" height="11" rx="2.2"></rect><line x1="3" y1="9" x2="17" y2="9"></line><circle cx="13.5" cy="12.7" r="1.1"></circle></svg>Gelir-Gider &amp; Kasa</button>
+      <button onClick="{{ nav.raporlar.onClick }}" style="{{ nav.raporlar.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="16" x2="16" y2="16"></line><rect x="5" y="10" width="2.6" height="5" rx="1" fill="currentColor" stroke="none"></rect><rect x="9" y="6.5" width="2.6" height="8.5" rx="1" fill="currentColor" stroke="none"></rect><rect x="13" y="11.5" width="2.6" height="3.5" rx="1" fill="currentColor" stroke="none"></rect></svg>Raporlar</button>
+
+      <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#5E6E92;text-transform:uppercase;padding:0 10px;margin:18px 0 8px">Yönetim</div>
+      <button onClick="{{ nav.daireler.onClick }}" style="{{ nav.daireler.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10" cy="7" r="3"></circle><rect x="4.5" y="12" width="11" height="5.2" rx="2.6"></rect></svg>Daireler &amp; Sakinler</button>
+      <button onClick="{{ nav.bloklar.onClick }}" style="{{ nav.bloklar.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="10" height="14" rx="1.2"></rect><rect x="7.4" y="6" width="2" height="2"></rect><rect x="10.6" y="6" width="2" height="2"></rect><rect x="7.4" y="9.6" width="2" height="2"></rect><rect x="10.6" y="9.6" width="2" height="2"></rect></svg>Bloklar</button>
+      <button onClick="{{ nav.firmalar.onClick }}" style="{{ nav.firmalar.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="7" width="12" height="9" rx="1.6"></rect><rect x="8" y="4" width="4" height="3" rx="1"></rect><line x1="4" y1="11" x2="16" y2="11"></line></svg>Firmalar</button>
+      <button onClick="{{ nav.tanimlar.onClick }}" style="{{ nav.tanimlar.style }}"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="4" y1="6.5" x2="16" y2="6.5"></line><circle cx="8" cy="6.5" r="2"></circle><line x1="4" y1="13.5" x2="16" y2="13.5"></line><circle cx="13" cy="13.5" r="2"></circle></svg>Tanımlar</button>
+    </nav>
+
+    <div style="padding:14px;border-top:1px solid rgba(255,255,255,.06)">
+      <div style="display:flex;align-items:center;gap:11px;padding:8px;border-radius:11px;background:rgba(255,255,255,.04)">
+        <div style="width:36px;height:36px;border-radius:10px;background:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex:none">SY</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Serkan Yöneten</div><div style="font-size:11.5px;color:#7E8DB0">Site Yöneticisi</div></div>
+        <button onClick="{{ goLogin }}" title="Çıkış" style="background:none;border:none;color:#7E8DB0;cursor:pointer;padding:4px;display:flex"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 4H5a1.5 1.5 0 0 0-1.5 1.5v9A1.5 1.5 0 0 0 5 16h3"></path><polyline points="12,13 16,10 12,7"></polyline><line x1="16" y1="10" x2="8" y2="10"></line></svg></button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+    <!-- TOPBAR -->
+    <header style="height:66px;flex:none;background:#fff;border-bottom:1px solid #EAEEF4;display:flex;align-items:center;padding:0 30px;gap:20px;position:sticky;top:0;z-index:30">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:17px;font-weight:800;letter-spacing:-.01em;line-height:1.1">{{ pageTitle }}</div>
+        <div style="font-size:12.5px;color:#8A95A8">{{ pageSub }}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;background:#F4F6FA;border:1px solid #EAEEF4;border-radius:10px;padding:8px 13px;width:210px">
+        <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="#98A2B3" stroke-width="1.8"><circle cx="9" cy="9" r="6"></circle><line x1="13.5" y1="13.5" x2="17" y2="17"></line></svg>
+        <input type="text" placeholder="Daire, sakin ara…" style="border:none;background:none;font-size:13px;width:100%;color:#16213A"/>
+      </div>
+      <select defaultValue="Haziran 2026" style="padding:9px 12px;border:1px solid #EAEEF4;border-radius:10px;background:#fff;font-size:13px;font-weight:700;color:#16213A;appearance:none;cursor:pointer">
+        <option>Haziran 2026</option><option>Mayıs 2026</option><option>Nisan 2026</option>
+      </select>
+      <button style="width:40px;height:40px;border:1px solid #EAEEF4;border-radius:10px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#5C6982" stroke-width="1.7"><path d="M6 8a4 4 0 0 1 8 0c0 4 1.5 5 1.5 5h-11S6 12 6 8Z"></path><path d="M8.5 16a1.5 1.5 0 0 0 3 0"></path></svg>
+        <span style="position:absolute;top:8px;right:9px;width:7px;height:7px;border-radius:50%;background:#E1483A;border:1.5px solid #fff"></span>
+      </button>
+    </header>
+
+    <!-- CONTENT -->
+    <main style="flex:1;padding:28px 30px 48px">
+
+    <!-- DASHBOARD -->
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Genel Bakış" style="animation:fadeUp .3s ease">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:20px">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px"><div style="font-size:12.5px;font-weight:600;color:#6B7791">Ana Kasa Toplamı</div><div style="width:32px;height:32px;border-radius:9px;background:#EEF3FF;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--accent,#2D5BFF)" stroke-width="1.8"><rect x="3" y="5" width="14" height="11" rx="2"></rect><line x1="3" y1="9" x2="17" y2="9"></line></svg></div></div>
+          <div style="font-size:26px;font-weight:800;letter-spacing:-.02em">{{ kpiAnaKasa }}</div>
+          <sc-if value="{{ showTrends }}" hint-placeholder-val="{{ true }}"><div style="font-size:12.5px;color:#1B7A3D;font-weight:600;margin-top:6px">▲ %6,4 <span style="color:#98A2B3;font-weight:500">geçen aya göre</span></div></sc-if>
+        </div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px"><div style="font-size:12.5px;font-weight:600;color:#6B7791">Tahsil Edilen Aidat</div><div style="width:32px;height:32px;border-radius:9px;background:#E7F6EC;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#1B7A3D" stroke-width="2"><polyline points="4,11 8,15 16,5"></polyline></svg></div></div>
+          <div style="font-size:26px;font-weight:800;letter-spacing:-.02em">{{ kpiTahsil }}</div>
+          <sc-if value="{{ showTrends }}" hint-placeholder-val="{{ true }}"><div style="font-size:12.5px;color:#6B7791;font-weight:600;margin-top:6px">{{ odendiCount }}/{{ totalCount }} daire <span style="color:#98A2B3;font-weight:500">ödedi</span></div></sc-if>
+        </div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px"><div style="font-size:12.5px;font-weight:600;color:#6B7791">Bekleyen Tahsilat</div><div style="width:32px;height:32px;border-radius:9px;background:#FCEDEC;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#C0392B" stroke-width="1.8"><circle cx="10" cy="10" r="7"></circle><line x1="10" y1="6.5" x2="10" y2="10.5"></line><line x1="10" y1="13.2" x2="10" y2="13.21"></line></svg></div></div>
+          <div style="font-size:26px;font-weight:800;letter-spacing:-.02em">{{ kpiBekleyen }}</div>
+          <sc-if value="{{ showTrends }}" hint-placeholder-val="{{ true }}"><div style="font-size:12.5px;color:#C0392B;font-weight:600;margin-top:6px">{{ geciktiCount }} gecikmiş <span style="color:#98A2B3;font-weight:500">· faiz işliyor</span></div></sc-if>
+        </div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px"><div style="font-size:12.5px;font-weight:600;color:#6B7791">Tahsilat Oranı</div><div style="width:32px;height:32px;border-radius:9px;background:#EEF3FF;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--accent,#2D5BFF)" stroke-width="1.8"><line x1="4" y1="15" x2="15" y2="15"></line><polyline points="5,12 8,8 11,10 15,5"></polyline></svg></div></div>
+          <div style="font-size:26px;font-weight:800;letter-spacing:-.02em">{{ kpiOran }}</div>
+          <div style="height:6px;border-radius:4px;background:#EEF1F6;margin-top:11px;overflow:hidden"><div style="{{ oranBarStyle }}"></div></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <!-- bar chart -->
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px">
+              <div><div style="font-size:15px;font-weight:700">Gelir / Gider — Son 6 Ay</div><div style="font-size:12.5px;color:#8A95A8">Park Vadi Sitesi tüm kasalar</div></div>
+              <div style="display:flex;gap:16px"><div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#6B7791"><span style="width:10px;height:10px;border-radius:3px;background:var(--accent,#2D5BFF)"></span>Gelir</div><div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#6B7791"><span style="width:10px;height:10px;border-radius:3px;background:#D7E0F5"></span>Gider</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;height:170px;gap:8px">
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="6">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:9px">
+                <div style="flex:1;display:flex;align-items:flex-end;gap:5px">
+                  <div style="{{ b.gStyle }}"></div>
+                  <div style="{{ b.xStyle }}"></div>
+                </div>
+                <div style="font-size:12px;font-weight:600;color:#98A2B3">{{ b.ay }}</div>
+              </div>
+              </sc-for>
+            </div>
+          </div>
+          <!-- son hareketler -->
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid #F0F2F7"><div style="font-size:15px;font-weight:700">Son Hareketler</div><button onClick="{{ nav.finans.onClick }}" style="background:none;border:none;color:var(--accent,#2D5BFF);font-size:13px;font-weight:700;cursor:pointer">Tümünü gör →</button></div>
+            <sc-for list="{{ sonIslemler }}" as="t" hint-placeholder-count="5">
+            <div style="display:flex;align-items:center;gap:14px;padding:13px 22px;border-bottom:1px solid #F6F7FA">
+              <span style="{{ t.dotStyle }}"></span>
+              <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ t.aciklama }}</div><div style="font-size:12px;color:#98A2B3">{{ t.tarih }} · {{ t.kasa }}</div></div>
+              <div style="font-size:11.5px;font-weight:700;color:#6B7791;background:#F4F6FA;padding:3px 9px;border-radius:7px">{{ t.kategori }}</div>
+              <div style="{{ t.tutarStyle }}">{{ t.tutarFmt }}</div>
+            </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <!-- tahsilat durumu -->
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+            <div style="font-size:15px;font-weight:700;margin-bottom:18px">Aidat Tahsilat Durumu</div>
+            <div style="display:flex;flex-direction:column;gap:13px">
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="font-weight:600;color:#3C4660">Ödendi</span><span style="font-weight:700">{{ odendiCount }} daire</span></div><div style="height:7px;border-radius:4px;background:#EEF1F6;overflow:hidden"><div style="{{ barOdendi }}"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="font-weight:600;color:#3C4660">Bekliyor</span><span style="font-weight:700">{{ bekliyorCount }} daire</span></div><div style="height:7px;border-radius:4px;background:#EEF1F6;overflow:hidden"><div style="{{ barBekliyor }}"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="font-weight:600;color:#3C4660">Gecikti</span><span style="font-weight:700">{{ geciktiCount }} daire</span></div><div style="height:7px;border-radius:4px;background:#EEF1F6;overflow:hidden"><div style="{{ barGecikti }}"></div></div></div>
+            </div>
+          </div>
+          <!-- gider donut -->
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+            <div style="font-size:15px;font-weight:700;margin-bottom:18px">Gider Dağılımı</div>
+            <div style="display:flex;align-items:center;gap:20px">
+              <div style="position:relative;flex:none">
+                <div style="{{ giderDonutStyle }}"></div>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:10.5px;color:#98A2B3;font-weight:600">Toplam</div><div style="font-size:15px;font-weight:800">{{ giderTopFmt }}</div></div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ giderLegend }}" as="g" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;gap:8px;font-size:12.5px"><span style="{{ g.dotStyle }}"></span><span style="flex:1;color:#3C4660;font-weight:600">{{ g.ad }}</span><span style="font-weight:700;color:#98A2B3">{{ g.yuzde }}</span></div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- AIDAT -->
+    <sc-if value="{{ isAidat }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Aidat Listesi" style="animation:fadeUp .3s ease">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:18px 20px"><div style="font-size:12.5px;color:#6B7791;font-weight:600;margin-bottom:6px">Tahsil Edilen</div><div style="font-size:23px;font-weight:800">{{ kpiTahsil }}</div></div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:18px 20px"><div style="font-size:12.5px;color:#6B7791;font-weight:600;margin-bottom:6px">Bekleyen</div><div style="font-size:23px;font-weight:800;color:#B7791F">{{ kpiBekliyorOnly }}</div></div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:18px 20px"><div style="font-size:12.5px;color:#6B7791;font-weight:600;margin-bottom:6px">Gecikmiş (faiz dahil)</div><div style="font-size:23px;font-weight:800;color:#C0392B">{{ kpiGeciktiOnly }}</div></div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:14px;flex-wrap:wrap">
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ blokButtons }}" as="bb" hint-placeholder-count="4">
+          <button onClick="{{ bb.onClick }}" style="{{ bb.style }}">{{ bb.label }}</button>
+          </sc-for>
+        </div>
+        <div style="font-size:13px;color:#8A95A8;font-weight:600">Dönem: <span style="color:#16213A;font-weight:700">Haziran 2026</span></div>
+      </div>
+
+      <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr style="background:#FAFBFD">
+            <th style="text-align:left;padding:13px 22px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase;letter-spacing:.04em">Daire</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase;letter-spacing:.04em">Sakin</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase;letter-spacing:.04em">Aidat Grubu</th>
+            <th style="text-align:right;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase;letter-spacing:.04em">Tutar</th>
+            <th style="text-align:right;padding:13px 22px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase;letter-spacing:.04em">Durum</th>
+          </tr></thead>
+          <tbody>
+            <sc-for list="{{ aidatRows }}" as="row" hint-placeholder-count="10">
+            <tr style="{{ row.rowStyle }}">
+              <td style="padding:14px 22px"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:42px;padding:4px 9px;border-radius:8px;background:#EEF3FF;color:var(--accent,#2D5BFF);font-size:12.5px;font-weight:800">{{ row.daire }}</span></td>
+              <td style="padding:14px 16px;font-size:13.5px;font-weight:600">{{ row.sakin }}</td>
+              <td style="padding:14px 16px;font-size:13px;color:#6B7791;font-weight:600">{{ row.grup }}</td>
+              <td style="padding:14px 16px;text-align:right"><div style="font-size:14px;font-weight:700">{{ row.tutarFmt }}</div><sc-if value="{{ row.showFaiz }}" hint-placeholder-val="{{ false }}"><div style="font-size:11.5px;color:#C0392B;font-weight:600">{{ row.faizFmt }}</div></sc-if></td>
+              <td style="padding:14px 22px;text-align:right"><select value="{{ row.status }}" onChange="{{ row.onChange }}" style="{{ row.selectStyle }}"><option value="Ödendi">● Ödendi</option><option value="Bekliyor">● Bekliyor</option><option value="Gecikti">● Gecikti</option></select></td>
+            </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 22px;border-top:1px solid #F0F2F7;background:#FAFBFD"><div style="font-size:13px;color:#6B7791;font-weight:600">{{ aidatRows.length }} daire listeleniyor · durum değiştirildiğinde gelir-gidere otomatik işlenir</div><div style="font-size:13px;font-weight:700">Tahsilat oranı: <span style="color:var(--accent,#2D5BFF)">{{ kpiOran }}</span></div></div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- FINANS -->
+    <sc-if value="{{ isFinans }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Gelir-Gider ve Kasa" style="animation:fadeUp .3s ease">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr) 1.1fr;gap:18px;margin-bottom:22px">
+        <sc-for list="{{ kasaRows }}" as="k" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px"><div style="{{ k.iconStyle }}"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="5" width="14" height="11" rx="2"></rect><line x1="3" y1="9" x2="17" y2="9"></line></svg></div><div style="font-size:12.5px;font-weight:700;color:#3C4660">{{ k.ad }}</div></div>
+          <div style="font-size:24px;font-weight:800;letter-spacing:-.02em">{{ k.bakiyeFmt }}</div>
+          <div style="font-size:12px;color:#98A2B3;font-weight:600;margin-top:4px">{{ k.tip }}</div>
+        </div>
+        </sc-for>
+        <div style="background:#0E1B33;border-radius:14px;padding:20px;color:#fff;box-shadow:0 8px 24px rgba(14,27,51,.2)">
+          <div style="font-size:12.5px;font-weight:700;color:#9AA7C2;margin-bottom:14px">Ana Kasa Toplamı</div>
+          <div style="font-size:26px;font-weight:800;letter-spacing:-.02em">{{ anaKasaFmt }}</div>
+          <div style="font-size:12px;color:#7E8DB0;font-weight:600;margin-top:4px">3 kasa birleşik bakiye</div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div style="font-size:15px;font-weight:700">Kasa Hareketleri</div>
+        <button onClick="{{ addTx }}" style="display:flex;align-items:center;gap:7px;padding:9px 15px;border:none;border-radius:10px;background:var(--accent,#2D5BFF);color:#fff;font-size:13px;font-weight:700;cursor:pointer"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2.2"><line x1="10" y1="5" x2="10" y2="15"></line><line x1="5" y1="10" x2="15" y2="10"></line></svg>Kayıt Ekle</button>
+      </div>
+
+      <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr style="background:#FAFBFD">
+            <th style="text-align:left;padding:13px 22px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Tarih</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Açıklama</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Kategori</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Kasa</th>
+            <th style="text-align:right;padding:13px 22px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Tutar</th>
+          </tr></thead>
+          <tbody>
+            <sc-for list="{{ txRows }}" as="t" hint-placeholder-count="7">
+            <tr style="{{ t.rowStyle }}">
+              <td style="padding:14px 22px;font-size:13px;color:#6B7791;font-weight:600;white-space:nowrap">{{ t.tarih }}</td>
+              <td style="padding:14px 16px;font-size:13.5px;font-weight:600">{{ t.aciklama }}</td>
+              <td style="padding:14px 16px"><span style="font-size:11.5px;font-weight:700;color:#6B7791;background:#F4F6FA;padding:4px 10px;border-radius:7px">{{ t.kategori }}</span></td>
+              <td style="padding:14px 16px;font-size:13px;color:#6B7791;font-weight:600">{{ t.kasa }}</td>
+              <td style="padding:14px 22px;text-align:right"><span style="{{ t.tutarStyle }}">{{ t.tutarFmt }}</span></td>
+            </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- DAIRELER -->
+    <sc-if value="{{ isDaireler }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Daireler ve Sakinler" style="animation:fadeUp .3s ease">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:14px;flex-wrap:wrap">
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ blokButtonsD }}" as="bb" hint-placeholder-count="4">
+          <button onClick="{{ bb.onClick }}" style="{{ bb.style }}">{{ bb.label }}</button>
+          </sc-for>
+        </div>
+        <button onClick="{{ addDaire }}" style="display:flex;align-items:center;gap:7px;padding:9px 15px;border:1px solid #DCE2EC;border-radius:10px;background:#fff;color:#16213A;font-size:13px;font-weight:700;cursor:pointer"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="10" y1="5" x2="10" y2="15"></line><line x1="5" y1="10" x2="15" y2="10"></line></svg>Daire Ekle</button>
+      </div>
+      <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr style="background:#FAFBFD">
+            <th style="text-align:left;padding:13px 22px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Daire</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Sakin</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Tür</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">İletişim</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Plaka</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Borç</th>
+            <th style="padding:13px 22px"></th>
+          </tr></thead>
+          <tbody>
+            <sc-for list="{{ daireRows }}" as="d" hint-placeholder-count="10">
+            <tr style="{{ d.rowStyle }}">
+              <td style="padding:13px 22px"><span style="display:inline-flex;align-items:center;justify-content:center;min-width:42px;padding:4px 9px;border-radius:8px;background:#EEF3FF;color:var(--accent,#2D5BFF);font-size:12.5px;font-weight:800">{{ d.daire }}</span></td>
+              <td style="padding:13px 16px;font-size:13.5px;font-weight:600">{{ d.sakin }}</td>
+              <td style="padding:13px 16px"><span style="{{ d.turStyle }}">{{ d.tur }}</span></td>
+              <td style="padding:13px 16px;font-size:13px;color:#6B7791;font-weight:600">{{ d.tel }}</td>
+              <td style="padding:13px 16px;font-size:13px;color:#6B7791;font-weight:600">{{ d.plaka }}</td>
+              <td style="padding:13px 16px"><span style="{{ d.borcStyle }}">{{ d.borcLabel }}</span></td>
+              <td style="padding:13px 22px;text-align:right"><button onClick="{{ d.onOpen }}" style="padding:7px 13px;border:1px solid #DCE2EC;border-radius:8px;background:#fff;color:#3C4660;font-size:12.5px;font-weight:700;cursor:pointer">Detay →</button></td>
+            </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- DAIRE DETAY -->
+    <sc-if value="{{ isDaireDetay }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Daire Detay" style="animation:fadeUp .3s ease;max-width:920px">
+      <button onClick="{{ nav.daireler.onClick }}" style="display:flex;align-items:center;gap:6px;background:none;border:none;color:#6B7791;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:16px">← Daire listesine dön</button>
+      <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:0 1px 2px rgba(16,24,40,.04);display:flex;justify-content:space-between;align-items:flex-start">
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="width:56px;height:56px;border-radius:14px;background:#EEF3FF;color:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800">{{ detay.daire }}</div>
+          <div>
+            <div style="font-size:20px;font-weight:800;letter-spacing:-.01em">{{ detay.sakin }}</div>
+            <div style="font-size:13.5px;color:#6B7791;font-weight:600">{{ detay.tur }} · {{ detay.grup }} aidat grubu · {{ detay.giris }} yılından beri</div>
+          </div>
+        </div>
+        <span style="{{ detay.borcStyle }}">{{ detay.borcLabel }}</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="font-size:14px;font-weight:700;margin-bottom:16px">İletişim &amp; Araç</div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F4F6FA;font-size:13.5px"><span style="color:#6B7791">Telefon</span><span style="font-weight:700">{{ detay.tel }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F4F6FA;font-size:13.5px"><span style="color:#6B7791">E-posta</span><span style="font-weight:700">{{ detay.eposta }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F4F6FA;font-size:13.5px"><span style="color:#6B7791">Araç Plakası</span><span style="font-weight:700">{{ detay.plaka }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:13.5px"><span style="color:#6B7791">Sakin Türü</span><span style="font-weight:700">{{ detay.tur }}</span></div>
+        </div>
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="font-size:14px;font-weight:700;margin-bottom:16px">Aidat / Borç Geçmişi</div>
+          <sc-for list="{{ detay.gecmis }}" as="h" hint-placeholder-count="4">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #F4F6FA">
+            <div><div style="font-size:13.5px;font-weight:600">{{ h.donem }}</div><div style="font-size:12px;color:#98A2B3">{{ h.not }}</div></div>
+            <div style="display:flex;align-items:center;gap:10px"><span style="font-size:13.5px;font-weight:700">{{ h.tutar }}</span><span style="{{ h.pill }}">{{ h.status }}</span></div>
+          </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- EK ODENEK -->
+    <sc-if value="{{ isEkodenek }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Ek Ödenekler" style="animation:fadeUp .3s ease">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onClick="{{ addEk }}" style="display:flex;align-items:center;gap:7px;padding:9px 15px;border:none;border-radius:10px;background:var(--accent,#2D5BFF);color:#fff;font-size:13px;font-weight:700;cursor:pointer"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2.2"><line x1="10" y1="5" x2="10" y2="15"></line><line x1="5" y1="10" x2="15" y2="10"></line></svg>Ek Ödenek Tanımla</button></div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <sc-for list="{{ ekRows }}" as="e" hint-placeholder-count="2">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+            <div><div style="font-size:16px;font-weight:700">{{ e.ad }}</div><div style="font-size:13px;color:#8A95A8;font-weight:600;margin-top:3px">{{ e.kapsam }} · Son ödeme {{ e.sonOdeme }}</div></div>
+            <div style="text-align:right"><div style="font-size:20px;font-weight:800">{{ e.tutar }}</div><div style="font-size:12px;color:#98A2B3;font-weight:600">daire başına</div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;margin-bottom:7px"><span style="color:#3C4660">Tahsilat ilerlemesi</span><span style="color:#6B7791">{{ e.odenen }}/{{ e.toplam }} daire · faiz %{{ e.faiz }}</span></div>
+          <div style="height:9px;border-radius:5px;background:#EEF1F6;overflow:hidden"><div style="{{ e.barStyle }}"></div></div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- FIRMALAR -->
+    <sc-if value="{{ isFirmalar }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Firmalar" style="animation:fadeUp .3s ease">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button onClick="{{ addFirma }}" style="display:flex;align-items:center;gap:7px;padding:9px 15px;border:none;border-radius:10px;background:var(--accent,#2D5BFF);color:#fff;font-size:13px;font-weight:700;cursor:pointer"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2.2"><line x1="10" y1="5" x2="10" y2="15"></line><line x1="5" y1="10" x2="15" y2="10"></line></svg>Firma Ekle</button></div>
+      <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr style="background:#FAFBFD">
+            <th style="text-align:left;padding:13px 22px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Firma</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Tür</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Hizmet</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Yetkili</th>
+            <th style="text-align:left;padding:13px 16px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">Vergi/TCKN</th>
+            <th style="text-align:left;padding:13px 22px;font-size:11.5px;font-weight:700;color:#8A95A8;text-transform:uppercase">IBAN</th>
+          </tr></thead>
+          <tbody>
+            <sc-for list="{{ firmaRows }}" as="fm" hint-placeholder-count="4">
+            <tr style="{{ fm.rowStyle }}">
+              <td style="padding:14px 22px;font-size:13.5px;font-weight:700">{{ fm.ad }}</td>
+              <td style="padding:14px 16px"><span style="{{ fm.turStyle }}">{{ fm.tur }}</span></td>
+              <td style="padding:14px 16px;font-size:13px;color:#6B7791;font-weight:600">{{ fm.hizmet }}</td>
+              <td style="padding:14px 16px;font-size:13px;font-weight:600">{{ fm.yetkili }}</td>
+              <td style="padding:14px 16px;font-size:13px;color:#6B7791;font-weight:600">{{ fm.vergi }}</td>
+              <td style="padding:14px 22px;font-size:12.5px;color:#6B7791;font-weight:600">{{ fm.iban }}</td>
+            </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- BLOKLAR -->
+    <sc-if value="{{ isBloklar }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Bloklar" style="animation:fadeUp .3s ease">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <sc-for list="{{ blokKartlari }}" as="bk" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><div style="width:44px;height:44px;border-radius:12px;background:#0E1B33;color:#fff;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.6"><rect x="5" y="3" width="10" height="14" rx="1.2"></rect><rect x="7.4" y="6" width="2" height="2"></rect><rect x="10.6" y="6" width="2" height="2"></rect><rect x="7.4" y="9.6" width="2" height="2"></rect><rect x="10.6" y="9.6" width="2" height="2"></rect></svg></div><div><div style="font-size:17px;font-weight:800">{{ bk.ad }}</div><div style="font-size:12.5px;color:#8A95A8;font-weight:600">{{ bk.kat }} kat</div></div></div>
+          <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #F4F6FA;font-size:13.5px"><span style="color:#6B7791">Toplam Daire</span><span style="font-weight:700">{{ bk.daire }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #F4F6FA;font-size:13.5px"><span style="color:#6B7791">Dolu</span><span style="font-weight:700">{{ bk.dolu }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13.5px"><span style="color:#6B7791">Borçlu Daire</span><span style="font-weight:700;color:#C0392B">{{ bk.borclu }}</span></div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- TANIMLAR -->
+    <sc-if value="{{ isTanimlar }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Tanımlar" style="animation:fadeUp .3s ease">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <sc-for list="{{ tanimGroups }}" as="tg" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(16,24,40,.04)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:14.5px;font-weight:700">{{ tg.ad }}</div><button onClick="{{ tg.onAdd }}" style="width:26px;height:26px;border:1px solid #DCE2EC;border-radius:8px;background:#fff;color:var(--accent,#2D5BFF);font-size:16px;font-weight:700;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center">+</button></div>
+          <div style="display:flex;flex-wrap:wrap;gap:7px">
+            <sc-for list="{{ tg.items }}" as="it" hint-placeholder-count="4">
+            <span style="font-size:12.5px;font-weight:600;color:#3C4660;background:#F4F6FA;border:1px solid #EAEEF4;padding:5px 11px;border-radius:8px">{{ it }}</span>
+            </sc-for>
+          </div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- RAPORLAR -->
+    <sc-if value="{{ isRaporlar }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Raporlar" style="animation:fadeUp .3s ease">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
+        <sc-for list="{{ raporKartlari }}" as="r" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:22px;box-shadow:0 1px 2px rgba(16,24,40,.04);display:flex;gap:16px">
+          <div style="width:46px;height:46px;border-radius:12px;background:#EEF3FF;color:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center;flex:none"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="12" height="14" rx="1.6"></rect><line x1="7" y1="7" x2="13" y2="7"></line><line x1="7" y1="10" x2="13" y2="10"></line><line x1="7" y1="13" x2="11" y2="13"></line></svg></div>
+          <div style="flex:1">
+            <div style="font-size:15px;font-weight:700">{{ r.ad }}</div>
+            <div style="font-size:13px;color:#6B7791;line-height:1.5;margin:5px 0 14px">{{ r.aciklama }}</div>
+            <div style="display:flex;gap:9px">
+              <button onClick="{{ r.onExcel }}" style="display:flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid #DCE2EC;border-radius:9px;background:#fff;font-size:12.5px;font-weight:700;color:#1B7A3D;cursor:pointer">Excel</button>
+              <button onClick="{{ r.onPdf }}" style="display:flex;align-items:center;gap:6px;padding:7px 13px;border:1px solid #DCE2EC;border-radius:9px;background:#fff;font-size:12.5px;font-weight:700;color:#C0392B;cursor:pointer">PDF</button>
+            </div>
+          </div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    </main>
+  </div>
+</div>
+</sc-if>
+
+<!-- MODAL -->
+<sc-if value="{{ modal }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(14,27,51,.46);backdrop-filter:blur(2px);z-index:80;display:flex;align-items:flex-start;justify-content:center;padding:48px 20px;overflow-y:auto">
+  <div onClick="{{ stop }}" style="width:100%;max-width:560px;background:#fff;border-radius:18px;box-shadow:0 32px 70px rgba(14,27,51,.3);animation:fadeUp .26s ease;overflow:hidden">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:24px 26px 18px;border-bottom:1px solid #F0F2F7">
+      <div style="display:flex;align-items:center;gap:13px">
+        <div style="width:40px;height:40px;border-radius:11px;background:#EEF3FF;color:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center;flex:none"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9"><line x1="10" y1="5" x2="10" y2="15"></line><line x1="5" y1="10" x2="15" y2="10"></line></svg></div>
+        <div><div style="font-size:17px;font-weight:800;letter-spacing:-.01em">{{ modal.title }}</div><div style="font-size:13px;color:#8A95A8;font-weight:600;margin-top:2px">{{ modal.sub }}</div></div>
+      </div>
+      <button onClick="{{ closeModal }}" style="width:32px;height:32px;border:1px solid #EAEEF4;border-radius:9px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#8A95A8"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="5" x2="15" y2="15"></line><line x1="15" y1="5" x2="5" y2="15"></line></svg></button>
+    </div>
+
+    <div style="padding:22px 26px;display:flex;flex-wrap:wrap;gap:16px">
+      <sc-for list="{{ modalFields }}" as="fld" hint-placeholder-count="6">
+      <div style="{{ fld.wrapStyle }}">
+        <label style="display:block;font-size:12.5px;font-weight:700;color:#3C4660;margin-bottom:7px">{{ fld.label }}</label>
+        <sc-if value="{{ fld.isText }}" hint-placeholder-val="{{ true }}">
+          <input type="text" value="{{ fld.value }}" placeholder="{{ fld.placeholder }}" onChange="{{ fld.onChange }}" style="width:100%;padding:11px 13px;border:1px solid #DCE2EC;border-radius:10px;background:#fff;font-size:13.5px;color:#16213A"/>
+        </sc-if>
+        <sc-if value="{{ fld.isSelect }}" hint-placeholder-val="{{ false }}">
+          <select value="{{ fld.value }}" onChange="{{ fld.onChange }}" style="width:100%;padding:11px 13px;border:1px solid #DCE2EC;border-radius:10px;background:#fff;font-size:13.5px;font-weight:600;color:#16213A;appearance:none;cursor:pointer">
+            <sc-for list="{{ fld.options }}" as="op" hint-placeholder-count="3"><option value="{{ op }}">{{ op }}</option></sc-for>
+          </select>
+        </sc-if>
+        <sc-if value="{{ fld.isRadio }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:8px;background:#EFF2F7;padding:4px;border-radius:10px">
+            <sc-for list="{{ fld.radioOptions }}" as="ro" hint-placeholder-count="2"><button onClick="{{ ro.onClick }}" style="{{ ro.style }}">{{ ro.label }}</button></sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ fld.isTextarea }}" hint-placeholder-val="{{ false }}">
+          <textarea value="{{ fld.value }}" placeholder="{{ fld.placeholder }}" onChange="{{ fld.onChange }}" rows="3" style="width:100%;padding:11px 13px;border:1px solid #DCE2EC;border-radius:10px;background:#fff;font-size:13.5px;color:#16213A;resize:vertical;font-family:inherit"></textarea>
+        </sc-if>
+      </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:10px;padding:16px 26px 22px;border-top:1px solid #F0F2F7;background:#FAFBFD">
+      <button onClick="{{ closeModal }}" style="padding:11px 18px;border:1px solid #DCE2EC;border-radius:10px;background:#fff;color:#3C4660;font-size:13.5px;font-weight:700;cursor:pointer">Vazgeç</button>
+      <button onClick="{{ submitModal }}" style="padding:11px 20px;border:none;border-radius:10px;background:var(--accent,#2D5BFF);color:#fff;font-size:13.5px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px color-mix(in srgb, var(--accent,#2D5BFF) 26%, transparent)">{{ modal.submitLabel }}</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- TOAST -->
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#16213A;color:#fff;padding:12px 20px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:0 16px 36px rgba(16,24,40,.28);z-index:90;display:flex;align-items:center;gap:11px;animation:toastIn .25s ease">
+  <span style="width:22px;height:22px;border-radius:50%;background:var(--accent,#2D5BFF);display:flex;align-items:center;justify-content:center;flex:none"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2.6"><polyline points="4,11 8,15 16,5"></polyline></svg></span>
+  {{ toast }}
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:880},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#2D5BFF&quot;,&quot;options&quot;:[&quot;#2D5BFF&quot;,&quot;#1F8A5B&quot;,&quot;#6D4DF0&quot;,&quot;#0E7C86&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;showTrends&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;faizGoster&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'login',
+    loginRole: 'yonetici',
+    blok: 'Tümü',
+    blokD: 'Tümü',
+    daireId: null,
+    toast: null,
+    modal: null,
+    form: {},
+    sakinView: 'web',
+    aidat: [
+      { id:1, daire:'A-3', blok:'A', sakin:'Mehmet Yılmaz', grup:'Normal', tutar:1750, status:'Ödendi' },
+      { id:2, daire:'A-7', blok:'A', sakin:'Ayşe Demir', grup:'Normal', tutar:1750, status:'Gecikti', faiz:38 },
+      { id:3, daire:'A-12', blok:'A', sakin:'Mustafa Kaya', grup:'Üst Grup', tutar:2400, status:'Ödendi' },
+      { id:4, daire:'B-2', blok:'B', sakin:'Zeynep Şahin', grup:'Normal', tutar:1750, status:'Bekliyor' },
+      { id:5, daire:'B-5', blok:'B', sakin:'Hüseyin Çelik', grup:'Normal', tutar:1750, status:'Ödendi' },
+      { id:6, daire:'B-9', blok:'B', sakin:'Fatma Arslan', grup:'Üst Grup', tutar:2400, status:'Gecikti', faiz:64 },
+      { id:7, daire:'C-1', blok:'C', sakin:'Ahmet Öztürk', grup:'Normal', tutar:1750, status:'Bekliyor' },
+      { id:8, daire:'C-4', blok:'C', sakin:'Elif Doğan', grup:'Normal', tutar:1750, status:'Ödendi' },
+      { id:9, daire:'C-8', blok:'C', sakin:'Kemal Aydın', grup:'Üst Grup', tutar:2400, status:'Ödendi' },
+      { id:10, daire:'C-11', blok:'C', sakin:'Selin Yıldız', grup:'Normal', tutar:1750, status:'Bekliyor' },
+    ],
+    kasalar: [
+      { id:'ziraat', ad:'Ziraat Bankası Kasası', tip:'Banka hesabı', bakiye:184250 },
+      { id:'enpara', ad:'Enpara Kasası', tip:'Banka hesabı', bakiye:96800 },
+      { id:'nakit', ad:'Nakit Kasa', tip:'Nakit', bakiye:12400 },
+    ],
+    tx: [
+      { id:'t1', tarih:'20 Haz 2026', tip:'Gider', kategori:'Asansör', aciklama:'Otis Asansör — aylık bakım', kasa:'Ziraat Bankası Kasası', tutar:-3200 },
+      { id:'t2', tarih:'18 Haz 2026', tip:'Gelir', kategori:'Kira', aciklama:'Kapıcı dairesi kira geliri', kasa:'Ziraat Bankası Kasası', tutar:6500 },
+      { id:'t3', tarih:'15 Haz 2026', tip:'Gider', kategori:'Temizlik', aciklama:'Pırıl Temizlik — Haziran hizmeti', kasa:'Enpara Kasası', tutar:-8500 },
+      { id:'t4', tarih:'10 Haz 2026', tip:'Gider', kategori:'Personel', aciklama:'Kapıcı maaşı — Haziran', kasa:'Ziraat Bankası Kasası', tutar:-22000 },
+      { id:'t5', tarih:'8 Haz 2026', tip:'Gider', kategori:'Peyzaj', aciklama:'Yeşil Peyzaj — bahçe bakımı', kasa:'Nakit Kasa', tutar:-2100 },
+      { id:'t6', tarih:'5 Haz 2026', tip:'Gider', kategori:'Elektrik', aciklama:'Ortak alan elektrik faturası', kasa:'Enpara Kasası', tutar:-4350 },
+      { id:'t7', tarih:'3 Haz 2026', tip:'Gelir', kategori:'Aidat', aciklama:'B-5 Hüseyin Çelik — Haziran aidat', kasa:'Nakit Kasa', tutar:1750 },
+    ],
+  };
+
+  fmt(n) { return new Intl.NumberFormat('tr-TR', { style:'currency', currency:'TRY', maximumFractionDigits:0 }).format(n); }
+
+  setScreen(s) { this.setState({ screen:s }); }
+  openDaire(id) { this.setState({ screen:'daireDetay', daireId:id }); }
+
+  showToast(msg) {
+    this.setState({ toast: msg });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ toast: null }), 2800);
+  }
+
+  modalConfig(type) {
+    const C = {
+      daire: {
+        title:'Yeni Daire & Sakin', sub:'Daire kaydı ve sakin bilgilerini girin', submitLabel:'Daireyi Kaydet',
+        fields:[
+          { key:'blok', label:'Blok', kind:'select', options:['A','B','C'], half:true },
+          { key:'no', label:'Daire No', kind:'text', placeholder:'örn. 14', half:true },
+          { key:'sakin', label:'Sakin Adı Soyadı', kind:'text', placeholder:'Ad Soyad' },
+          { key:'tur', label:'Sakin Türü', kind:'radio', options:['Ev Sahibi','Kiracı'], half:true },
+          { key:'grup', label:'Aidat Grubu', kind:'select', options:['Normal — ₺1.750','Üst Grup — ₺2.400'], half:true },
+          { key:'tel', label:'Telefon', kind:'text', placeholder:'05XX XXX XX XX', half:true },
+          { key:'plaka', label:'Araç Plakası', kind:'text', placeholder:'34 ABC 123', half:true },
+          { key:'eposta', label:'E-posta', kind:'text', placeholder:'ornek@gmail.com' },
+        ],
+        defaults:{ blok:'A', tur:'Ev Sahibi', grup:'Normal — ₺1.750' },
+      },
+      tx: {
+        title:'Yeni Kasa Hareketi', sub:'Gelir veya gider kaydını kasaya işleyin', submitLabel:'Kaydı İşle',
+        fields:[
+          { key:'tip', label:'Hareket Tipi', kind:'radio', options:['Gelir','Gider'] },
+          { key:'tarih', label:'Tarih', kind:'text', placeholder:'GG Ay YYYY', half:true },
+          { key:'tutar', label:'Tutar (₺)', kind:'text', placeholder:'0', half:true },
+          { key:'kategori', label:'Kategori', kind:'select', options:['Aidat','Kira','Asansör','Temizlik','Elektrik','Personel','Peyzaj','Tamir-Tadilat','Diğer'], half:true },
+          { key:'kasa', label:'Kasa', kind:'select', options:['Ziraat Bankası Kasası','Enpara Kasası','Nakit Kasa'], half:true },
+          { key:'aciklama', label:'Açıklama', kind:'textarea', placeholder:'Hareket açıklaması…' },
+        ],
+        defaults:{ tip:'Gider', tarih:'23 Haz 2026', kategori:'Diğer', kasa:'Ziraat Bankası Kasası' },
+      },
+      ek: {
+        title:'Ek Ödenek Tanımla', sub:'Daireleri toplu borçlandırın', submitLabel:'Ödeneği Oluştur',
+        fields:[
+          { key:'ad', label:'Ödenek Adı', kind:'text', placeholder:'örn. Cephe Yenileme Katkı Payı' },
+          { key:'kapsam', label:'Kapsam', kind:'select', options:['Tüm daireler','A Blok','B Blok','C Blok','Seçili daireler'], half:true },
+          { key:'tutar', label:'Daire Başına Tutar (₺)', kind:'text', placeholder:'0', half:true },
+          { key:'son', label:'Son Ödeme Tarihi', kind:'text', placeholder:'GG Ay YYYY', half:true },
+          { key:'faiz', label:'Gecikme Faizi (%)', kind:'text', placeholder:'0', half:true },
+        ],
+        defaults:{ kapsam:'Tüm daireler', faiz:'5' },
+      },
+      firma: {
+        title:'Yeni Firma', sub:'Tedarikçi / hizmet firma kaydı', submitLabel:'Firmayı Kaydet',
+        fields:[
+          { key:'ad', label:'Firma / Kişi Adı', kind:'text', placeholder:'Firma ünvanı' },
+          { key:'tur', label:'Tür', kind:'radio', options:['Tüzel Kişi','Gerçek Kişi'], half:true },
+          { key:'hizmet', label:'Hizmet', kind:'select', options:['Asansör','Temizlik','Tamir-Tadilat','Peyzaj','Güvenlik','Diğer'], half:true },
+          { key:'yetkili', label:'Yetkili', kind:'text', placeholder:'Ad Soyad', half:true },
+          { key:'vergi', label:'Vergi No / TCKN', kind:'text', placeholder:'—', half:true },
+          { key:'iban', label:'IBAN', kind:'text', placeholder:'TR..' },
+        ],
+        defaults:{ tur:'Tüzel Kişi', hizmet:'Asansör' },
+      },
+    };
+    if (type && type.indexOf('tanim:') === 0) {
+      const grp = type.slice(6);
+      return { type, title: grp + ' — Yeni Kayıt', sub:'Parametrik listeye değer ekleyin', submitLabel:'Ekle',
+        fields:[{ key:'deger', label:'Değer', kind:'text', placeholder:grp+' değeri' }], defaults:{} };
+    }
+    return Object.assign({ type }, C[type]);
+  }
+
+  openModal(type) {
+    const cfg = this.modalConfig(type);
+    this.setState({ modal: cfg, form: Object.assign({}, cfg.defaults || {}) });
+  }
+  closeModal() { this.setState({ modal: null, form: {} }); }
+  setField(key, val) { this.setState(s => ({ form: Object.assign({}, s.form, { [key]: val }) })); }
+
+  submitModal() {
+    const m = this.state.modal; const fm = this.state.form;
+    if (!m) return;
+    const t = m.type;
+    if (t === 'daire') {
+      const blok = fm.blok || 'A';
+      const daire = blok + '-' + (fm.no || '?');
+      const grup = (fm.grup||'').indexOf('Üst') >= 0 ? 'Üst Grup' : 'Normal';
+      const tutar = grup === 'Üst Grup' ? 2400 : 1750;
+      const id = Date.now();
+      this.setState(s => ({ aidat: s.aidat.concat([{ id, daire, blok, sakin: fm.sakin || 'Yeni Sakin', grup, tutar, status:'Bekliyor' }]) }));
+      this.showToast(daire + ' eklendi · ' + (fm.sakin || 'Yeni Sakin'));
+    } else if (t === 'tx') {
+      const sign = fm.tip === 'Gelir' ? 1 : -1;
+      const tutar = sign * (parseInt(String(fm.tutar||'0').replace(/\D/g,'')) || 0);
+      const kasaName = fm.kasa || 'Ziraat Bankası Kasası';
+      this.setState(s => {
+        const kasalar = s.kasalar.map(k => k.ad === kasaName ? { ...k, bakiye: k.bakiye + tutar } : k);
+        const tx = [{ id:'m'+Date.now(), tarih: fm.tarih||'23 Haz 2026', tip: fm.tip||'Gider', kategori: fm.kategori||'Diğer', aciklama: fm.aciklama||'Manuel kayıt', kasa: kasaName, tutar }].concat(s.tx);
+        return { kasalar, tx };
+      });
+      this.showToast('Kasa hareketi işlendi · ' + (fm.kasa||''));
+    } else if (t === 'ek') {
+      this.showToast((fm.ad || 'Ek ödenek') + ' oluşturuldu · daireler borçlandırıldı');
+    } else if (t === 'firma') {
+      this.showToast((fm.ad || 'Firma') + ' kaydedildi');
+    } else if (t && t.indexOf('tanim:') === 0) {
+      this.showToast((fm.deger || 'Değer') + ' eklendi');
+    }
+    this.closeModal();
+  }
+
+  changeAidatStatus(id, val) {
+    const row = this.state.aidat.find(a => a.id === id);
+    this.setState(s => {
+      const aidat = s.aidat.map(a => a.id === id ? { ...a, status: val } : a);
+      const kasalar = s.kasalar.map(k => ({ ...k }));
+      const tx = s.tx.slice();
+      const ziraat = kasalar.find(k => k.id === 'ziraat');
+      const idx = tx.findIndex(t => t.linked === id);
+      if (val === 'Ödendi' && idx < 0) {
+        tx.unshift({ id:'aid'+id, tarih:'22 Haz 2026', tip:'Gelir', kategori:'Aidat', aciklama: row.daire+' '+row.sakin+' — Haziran aidat', kasa:'Ziraat Bankası Kasası', tutar: row.tutar, linked: id });
+        ziraat.bakiye += row.tutar;
+      } else if (val !== 'Ödendi' && idx >= 0) {
+        ziraat.bakiye -= tx[idx].tutar;
+        tx.splice(idx, 1);
+      }
+      return { aidat, kasalar, tx };
+    });
+    this.showToast(val === 'Ödendi' ? row.daire + ' tahsil edildi · gelir-gidere işlendi' : row.daire + ' durumu güncellendi');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const f = (n) => this.fmt(n);
+    const accent = this.props.accent ?? '#2D5BFF';
+    const showTrends = this.props.showTrends ?? true;
+    const faizGoster = this.props.faizGoster ?? true;
+    const screen = s.screen;
+    const eff = screen === 'daireDetay' ? 'daireler' : screen;
+
+    // nav
+    const navIdle = { display:'flex', alignItems:'center', gap:'11px', padding:'9px 11px', borderRadius:'9px', border:'none', background:'transparent', color:'#93A0BC', font:'inherit', fontSize:'13.5px', fontWeight:600, cursor:'pointer', width:'100%', textAlign:'left', marginBottom:'2px' };
+    const navActive = Object.assign({}, navIdle, { background:'rgba(255,255,255,0.09)', color:'#FFFFFF' });
+    const mk = (sc) => ({ style: eff === sc ? navActive : navIdle, onClick: () => this.setScreen(sc) });
+    const nav = { dashboard:mk('dashboard'), aidat:mk('aidat'), ekodenek:mk('ekodenek'), finans:mk('finans'), raporlar:mk('raporlar'), daireler:mk('daireler'), bloklar:mk('bloklar'), firmalar:mk('firmalar'), tanimlar:mk('tanimlar') };
+
+    // page titles
+    const titles = {
+      dashboard:['Genel Bakış','Park Vadi Sitesi · Haziran 2026 dönemi'],
+      aidat:['Aidat Listesi','Dönem bazlı tahsilat takibi ve durum yönetimi'],
+      ekodenek:['Ek Ödenekler','Toplu borçlandırma ve tahsilat takibi'],
+      finans:['Gelir-Gider & Kasa','Kasa bakiyeleri ve cari hareketler'],
+      raporlar:['Raporlar','Dönemsel rapor üretimi ve dışa aktarım'],
+      daireler:['Daireler & Sakinler','Daire, sakin ve borç durumu listesi'],
+      daireDetay:['Daire Detayı','Sakin bilgileri ve aidat geçmişi'],
+      bloklar:['Bloklar','Site blok yapısı ve doluluk'],
+      firmalar:['Firmalar','Tedarikçi ve hizmet firma kayıtları'],
+      tanimlar:['Tanımlar','Parametrik kod listeleri yönetimi'],
+    };
+    const pt = titles[screen] || ['',''];
+
+    // KPIs
+    const total = s.aidat.reduce((a,r)=>a+r.tutar,0);
+    const odendi = s.aidat.filter(r=>r.status==='Ödendi');
+    const bekliyor = s.aidat.filter(r=>r.status==='Bekliyor');
+    const gecikti = s.aidat.filter(r=>r.status==='Gecikti');
+    const odendiSum = odendi.reduce((a,r)=>a+r.tutar,0);
+    const bekliyorSum = bekliyor.reduce((a,r)=>a+r.tutar,0);
+    const geciktiSum = gecikti.reduce((a,r)=>a+r.tutar+(r.faiz||0),0);
+    const anaKasa = s.kasalar.reduce((a,k)=>a+k.bakiye,0);
+    const oran = Math.round(odendi.length / s.aidat.length * 100);
+    const n = s.aidat.length;
+
+    // status meta
+    const SM = {
+      'Ödendi':   { bg:'#E7F6EC', fg:'#1B7A3D', dot:'#22A153' },
+      'Bekliyor': { bg:'#FEF6E7', fg:'#B7791F', dot:'#E0A526' },
+      'Gecikti':  { bg:'#FCEDEC', fg:'#C0392B', dot:'#E1483A' },
+    };
+    const pill = (st) => ({ display:'inline-flex', alignItems:'center', gap:'7px', padding:'4px 11px', borderRadius:'999px', background:SM[st].bg, color:SM[st].fg, fontSize:'12px', fontWeight:700, whiteSpace:'nowrap' });
+
+    // aidat rows
+    const aidatList = s.aidat.filter(r => s.blok === 'Tümü' || r.blok === s.blok);
+    const aidatRows = aidatList.map((r,i) => {
+      const m = SM[r.status];
+      return {
+        daire:r.daire, sakin:r.sakin, grup:r.grup, status:r.status,
+        tutarFmt: f(r.tutar),
+        showFaiz: faizGoster && r.status==='Gecikti' && !!r.faiz,
+        faizFmt: '+ ' + f(r.faiz||0) + ' faiz',
+        rowStyle: { borderTop: i===0?'none':'1px solid #F0F2F7' },
+        selectStyle: { appearance:'none', border:'1px solid '+m.bg, borderRadius:'9px', padding:'7px 12px', fontSize:'12.5px', fontWeight:700, background:m.bg, color:m.fg, cursor:'pointer' },
+        onChange: (e) => this.changeAidatStatus(r.id, e.target.value),
+      };
+    });
+
+    // blok filter buttons
+    const chip = (active) => ({ padding:'8px 15px', borderRadius:'9px', border:'1px solid '+(active?accent:'#DCE2EC'), background:active?accent:'#fff', color:active?'#fff':'#3C4660', fontSize:'13px', fontWeight:700, cursor:'pointer' });
+    const bloks = ['Tümü','A Blok','B Blok','C Blok'];
+    const bval = (l) => l==='Tümü'?'Tümü':l.charAt(0);
+    const blokButtons = bloks.map(l => ({ label:l, style:chip(s.blok===bval(l)), onClick:()=>this.setState({blok:bval(l)}) }));
+    const blokButtonsD = bloks.map(l => ({ label:l, style:chip(s.blokD===bval(l)), onClick:()=>this.setState({blokD:bval(l)}) }));
+
+    // bars
+    const barsData = [['Oca',78000,64000],['Şub',81000,69000],['Mar',76000,58000],['Nis',84000,72000],['May',88000,61000],['Haz',71000,44000]];
+    const bmax = 92000;
+    const bars = barsData.map(([ay,g,x]) => ({
+      ay,
+      gStyle: { height: Math.round(g/bmax*150)+'px', width:'14px', borderRadius:'4px 4px 2px 2px', background: accent },
+      xStyle: { height: Math.round(x/bmax*150)+'px', width:'14px', borderRadius:'4px 4px 2px 2px', background:'#D7E0F5' },
+    }));
+
+    // transactions
+    const txStyle = (t) => ({ fontSize:'14px', fontWeight:700, color: t>0?'#1B7A3D':'#16213A' });
+    const txRows = s.tx.map((t,i) => ({
+      tarih:t.tarih, aciklama:t.aciklama, kategori:t.kategori, kasa:t.kasa,
+      tutarFmt: (t.tutar>0?'+ ':'– ') + f(Math.abs(t.tutar)),
+      tutarStyle: txStyle(t.tutar),
+      rowStyle: { borderTop: i===0?'none':'1px solid #F0F2F7' },
+    }));
+    const sonIslemler = s.tx.slice(0,5).map(t => ({
+      aciklama:t.aciklama, tarih:t.tarih, kasa:t.kasa, kategori:t.kategori,
+      tutarFmt: (t.tutar>0?'+ ':'– ') + f(Math.abs(t.tutar)),
+      tutarStyle: txStyle(t.tutar),
+      dotStyle: { width:'9px', height:'9px', borderRadius:'50%', flex:'none', background: t.tutar>0?'#22A153':'#E1483A' },
+    }));
+
+    // kasa
+    const kasaRows = s.kasalar.map(k => ({
+      ad:k.ad, tip:k.tip, bakiyeFmt: f(k.bakiye),
+      iconStyle: { width:'30px', height:'30px', borderRadius:'8px', flex:'none', display:'flex', alignItems:'center', justifyContent:'center', background: k.id==='nakit'?'#E7F6EC':'#EEF3FF', color: k.id==='nakit'?'#1B7A3D':accent },
+    }));
+
+    // gider donut
+    const giderCats = [['Personel',22000,'#16307A'],['Temizlik',8500,'#2D5BFF'],['Elektrik',4350,'#5B86F2'],['Asansör',3200,'#8FAEF7'],['Peyzaj',2100,'#B9CCFB'],['Diğer',1600,'#DCE6FB']];
+    const giderTop = giderCats.reduce((a,c)=>a+c[1],0);
+    let acc = 0; const segs = [];
+    giderCats.forEach(([ad,val,renk]) => { const st=acc/giderTop*360; acc+=val; segs.push(renk+' '+st+'deg '+(acc/giderTop*360)+'deg'); });
+    const giderDonutStyle = { width:'124px', height:'124px', borderRadius:'50%', background:'conic-gradient('+segs.join(',')+')', WebkitMask:'radial-gradient(circle, transparent 40px, #000 41px)', mask:'radial-gradient(circle, transparent 40px, #000 41px)' };
+    const giderLegend = giderCats.map(([ad,val,renk]) => ({ ad, yuzde: Math.round(val/giderTop*100)+'%', dotStyle:{ width:'10px', height:'10px', borderRadius:'3px', flex:'none', background:renk } }));
+
+    // status bars (dashboard)
+    const sbar = (cnt, color) => ({ width: Math.round(cnt/n*100)+'%', height:'100%', borderRadius:'4px', background:color });
+
+    // daire info
+    const info = {
+      'A-3':{tur:'Ev Sahibi',tel:'0532 214 88 17',eposta:'m.yilmaz@gmail.com',plaka:'34 ABC 112',giris:'2019'},
+      'A-7':{tur:'Kiracı',tel:'0541 663 20 04',eposta:'ayse.demir@gmail.com',plaka:'06 BK 4471',giris:'2023'},
+      'A-12':{tur:'Ev Sahibi',tel:'0533 119 76 50',eposta:'mkaya@hotmail.com',plaka:'34 KP 9023',giris:'2018'},
+      'B-2':{tur:'Kiracı',tel:'0535 442 18 90',eposta:'zsahin@gmail.com',plaka:'35 ET 220',giris:'2022'},
+      'B-5':{tur:'Ev Sahibi',tel:'0506 771 35 28',eposta:'h.celik@gmail.com',plaka:'34 VR 6612',giris:'2020'},
+      'B-9':{tur:'Ev Sahibi',tel:'0532 880 14 63',eposta:'fatma.arslan@gmail.com',plaka:'—',giris:'2017'},
+      'C-1':{tur:'Kiracı',tel:'0542 305 99 71',eposta:'ahmet.ozturk@gmail.com',plaka:'16 AD 308',giris:'2024'},
+      'C-4':{tur:'Ev Sahibi',tel:'0538 226 47 12',eposta:'elif.dogan@gmail.com',plaka:'34 LM 1180',giris:'2019'},
+      'C-8':{tur:'Ev Sahibi',tel:'0533 614 02 85',eposta:'kemal.aydin@gmail.com',plaka:'34 FF 770',giris:'2021'},
+      'C-11':{tur:'Kiracı',tel:'0544 158 63 39',eposta:'selin.yildiz@gmail.com',plaka:'41 SY 55',giris:'2023'},
+    };
+    const turStyle = (t) => ({ fontSize:'12px', fontWeight:700, padding:'3px 9px', borderRadius:'7px', background: t==='Ev Sahibi'?'#EEF3FF':'#FBF1E7', color: t==='Ev Sahibi'?accent:'#B7791F' });
+    const borcPill = (has) => ({ display:'inline-flex', alignItems:'center', gap:'6px', fontSize:'12px', fontWeight:700, padding:'4px 11px', borderRadius:'999px', background: has?'#FCEDEC':'#E7F6EC', color: has?'#C0392B':'#1B7A3D' });
+
+    const daireListFull = s.aidat.map(r => { const inf = info[r.daire]; const has = r.status!=='Ödendi'; return { id:r.id, daire:r.daire, blok:r.blok, sakin:r.sakin, grup:r.grup, status:r.status, tutar:r.tutar, faiz:r.faiz, ...inf, has }; });
+    const daireRows = daireListFull.filter(d => s.blokD==='Tümü' || d.blok===s.blokD).map((d,i) => ({
+      daire:d.daire, sakin:d.sakin, tur:d.tur, tel:d.tel, plaka:d.plaka,
+      turStyle: turStyle(d.tur),
+      borcLabel: d.has ? 'Borçlu' : 'Güncel',
+      borcStyle: borcPill(d.has),
+      rowStyle: { borderTop: i===0?'none':'1px solid #F0F2F7' },
+      onOpen: () => this.openDaire(d.id),
+    }));
+
+    // daire detay
+    const dsel = daireListFull.find(d => d.id === s.daireId) || daireListFull[0];
+    let detay = null;
+    if (dsel) {
+      const cur = dsel.status==='Gecikti' ? f(dsel.tutar)+' + '+f(dsel.faiz||0)+' faiz' : f(dsel.tutar);
+      detay = {
+        daire:dsel.daire, sakin:dsel.sakin, tur:dsel.tur, grup:dsel.grup, giris:dsel.giris,
+        tel:dsel.tel, eposta:dsel.eposta, plaka:dsel.plaka,
+        borcLabel: dsel.has ? (dsel.status==='Gecikti'?'Gecikmiş borç':'Bekleyen borç') : 'Borcu yok',
+        borcStyle: borcPill(dsel.has),
+        gecmis: [
+          { donem:'Haziran 2026', not:'Cari dönem', tutar: cur, status:dsel.status, pill: pill(dsel.status) },
+          { donem:'Mayıs 2026', not:'04 May ödendi', tutar:f(dsel.tutar), status:'Ödendi', pill: pill('Ödendi') },
+          { donem:'Nisan 2026', not:'02 Nis ödendi', tutar:f(dsel.tutar), status:'Ödendi', pill: pill('Ödendi') },
+          { donem:'Cephe Yenileme', not:'Ek ödenek · 31 Tem son ödeme', tutar:f(3500), status:'Bekliyor', pill: pill('Bekliyor') },
+        ],
+      };
+    }
+
+    // ek ödenek
+    const ekData = [
+      { ad:'Cephe Yenileme Katkı Payı', kapsam:'Tüm daireler (40)', sonOdeme:'31 Tem 2026', tutar:f(3500), odenen:28, toplam:40, faiz:5 },
+      { ad:'Otopark Düzenleme', kapsam:'A Blok seçili (14)', sonOdeme:'15 Ağu 2026', tutar:f(1200), odenen:5, toplam:14, faiz:0 },
+    ];
+    const ekRows = ekData.map(e => ({ ...e, barStyle: { width: Math.round(e.odenen/e.toplam*100)+'%', height:'100%', borderRadius:'5px', background:accent } }));
+
+    // firmalar
+    const firmaData = [
+      { ad:'Otis Asansör Bakım A.Ş.', tur:'Tüzel Kişi', hizmet:'Asansör', yetkili:'Burak Şen', vergi:'Beşiktaş VD · 6120384512', iban:'TR48 0006 2000 ...' },
+      { ad:'Pırıl Temizlik Hizmetleri', tur:'Tüzel Kişi', hizmet:'Temizlik', yetkili:'Nalan Kork', vergi:'Kadıköy VD · 7340912233', iban:'TR33 0001 0021 ...' },
+      { ad:'Mehmet Usta (Tesisat)', tur:'Gerçek Kişi', hizmet:'Tamir-Tadilat', yetkili:'Mehmet Acar', vergi:'TCKN 1234*****', iban:'TR62 0011 1000 ...' },
+      { ad:'Yeşil Peyzaj Ltd. Şti.', tur:'Tüzel Kişi', hizmet:'Peyzaj', yetkili:'Deniz Ova', vergi:'Maltepe VD · 9981200345', iban:'TR91 0004 6007 ...' },
+    ];
+    const firmaRows = firmaData.map((fm,i) => ({ ...fm, turStyle: turStyle(fm.tur==='Tüzel Kişi'?'Ev Sahibi':'Kiracı'), rowStyle:{ borderTop: i===0?'none':'1px solid #F0F2F7' } }));
+
+    // bloklar
+    const blokKartlari = ['A','B','C'].map(b => {
+      const ds = daireListFull.filter(d => d.blok===b);
+      return { ad: b+' Blok', kat: b==='A'?8:b==='B'?10:9, daire: b==='A'?14:b==='B'?16:14, dolu: b==='A'?13:b==='B'?15:14, borclu: ds.filter(d=>d.has).length };
+    });
+
+    // tanımlar
+    const tg = (ad, items) => ({ ad, items, onAdd: () => this.openModal('tanim:'+ad) });
+    const tanimGroups = [
+      tg('Daire Tipleri', ['1+1','2+1','3+1','Kapıcı Dairesi','Dükkan']),
+      tg('Aidat Grupları', ['Normal — ₺1.750','Üst Grup — ₺2.400']),
+      tg('Gelir Türleri', ['Aidat','Kira Geliri','Demirbaş Satışı','Ek Ödenek']),
+      tg('Gider Türleri', ['Asansör','Temizlik','Tamir-Tadilat','Çatı','Peyzaj','Elektrik','Personel']),
+      tg('Kasalar', ['Ziraat Bankası','Enpara','Nakit Kasa']),
+      tg('Ödeme Yöntemleri', ['Nakit','Havale/EFT','Kredi Kartı']),
+    ];
+
+    // raporlar
+    const rk = (ad, aciklama) => ({ ad, aciklama, onExcel: () => this.showToast(ad + ' · Excel olarak hazırlanıyor'), onPdf: () => this.showToast(ad + ' · PDF olarak hazırlanıyor') });
+    const raporKartlari = [
+      rk('Aylık Gelir-Gider Raporu', 'Seçili dönem için tüm kasaların gelir ve gider dökümü, net bakiye değişimi.'),
+      rk('Daire Bazlı Borç Dökümü', 'Her dairenin güncel aidat ve ek ödenek borcu, gecikme faizi dahil detay.'),
+      rk('Kasa Hareket Detayı', 'Kasa bazında tüm giriş/çıkış hareketleri ve ödeme yöntemi kırılımı.'),
+      rk('Tahsilat Performansı', 'Dönemsel tahsilat oranı, gecikme eğilimi ve blok bazlı karşılaştırma.'),
+      rk('Firma Ödemeleri', 'Tedarikçi firmalara yapılan ödemelerin hizmet türü bazında özeti.'),
+      rk('Yıllık Konsolide Rapor', 'Tüm dönemlerin birleşik gelir-gider ve bakiye özeti, yıl sonu raporu.'),
+    ];
+
+    // modal fields
+    const segBtn = (active) => ({ flex:1, padding:'9px', borderRadius:'7px', border:'none', cursor:'pointer', fontSize:'13px', fontWeight:700, background: active?'#fff':'transparent', color: active?accent:'#6B7791', boxShadow: active?'0 1px 3px rgba(16,24,40,.1)':'none' });
+    const modalFields = (s.modal && s.modal.fields ? s.modal.fields : []).map(fd => {
+      const val = s.form[fd.key] != null ? s.form[fd.key] : '';
+      return {
+        label: fd.label, placeholder: fd.placeholder || '', value: val,
+        wrapStyle: { width: fd.half ? 'calc(50% - 8px)' : '100%' },
+        isText: fd.kind === 'text', isSelect: fd.kind === 'select',
+        isRadio: fd.kind === 'radio', isTextarea: fd.kind === 'textarea',
+        options: fd.options || [],
+        onChange: (e) => this.setField(fd.key, e.target.value),
+        radioOptions: (fd.options || []).map(o => ({ label:o, style: segBtn(val === o), onClick: () => this.setField(fd.key, o) })),
+      };
+    });
+
+    return {
+      shellStyle: { minHeight:'100vh', '--accent': accent },
+      isLogin: screen==='login', isSakin: screen==='sakin', isApp: screen!=='login' && screen!=='sakin',
+      isDashboard: screen==='dashboard', isAidat: screen==='aidat', isEkodenek: screen==='ekodenek',
+      isFinans: screen==='finans', isRaporlar: screen==='raporlar', isDaireler: screen==='daireler',
+      isDaireDetay: screen==='daireDetay', isBloklar: screen==='bloklar', isFirmalar: screen==='firmalar', isTanimlar: screen==='tanimlar',
+      nav, pageTitle: pt[0], pageSub: pt[1], showTrends,
+      // login
+      loginUser: 'yonetici@parkvadi',
+      roleYoneticiStyle: this.segStyle(s.loginRole==='yonetici', accent),
+      roleSakinStyle: this.segStyle(s.loginRole==='sakin', accent),
+      setRoleYonetici: () => this.setState({ loginRole:'yonetici' }),
+      setRoleSakin: () => this.setState({ loginRole:'sakin' }),
+      doLogin: () => this.setScreen(s.loginRole==='sakin' ? 'sakin' : 'dashboard'),
+      goLogin: () => this.setState({ screen:'login', daireId:null }),
+      sakinOde: () => this.showToast('Ödeme talimatı oluşturuldu · yönetime iletildi'),
+      sakinGuncelle: () => this.showToast('İletişim bilgisi güncelleme talebi yönetime iletildi'),
+      isSakinWeb: s.sakinView === 'web', isSakinMobil: s.sakinView === 'mobil',
+      setSakinWeb: () => this.setState({ sakinView:'web' }),
+      setSakinMobil: () => this.setState({ sakinView:'mobil' }),
+      sakinWebTab: this.tabStyle(s.sakinView === 'web', accent),
+      sakinMobilTab: this.tabStyle(s.sakinView === 'mobil', accent),
+      // kpis
+      kpiAnaKasa: f(anaKasa), kpiTahsil: f(odendiSum), kpiBekleyen: f(bekliyorSum+geciktiSum), kpiOran: '%'+oran,
+      kpiBekliyorOnly: f(bekliyorSum), kpiGeciktiOnly: f(geciktiSum),
+      odendiCount: odendi.length, bekliyorCount: bekliyor.length, geciktiCount: gecikti.length, totalCount: n,
+      oranBarStyle: { width: oran+'%', height:'100%', background: accent },
+      barOdendi: sbar(odendi.length, '#22A153'), barBekliyor: sbar(bekliyor.length, '#E0A526'), barGecikti: sbar(gecikti.length, '#E1483A'),
+      bars, sonIslemler, txRows, kasaRows, anaKasaFmt: f(anaKasa),
+      giderDonutStyle, giderLegend, giderTopFmt: f(giderTop),
+      aidatRows, blokButtons, blokButtonsD, daireRows, detay,
+      ekRows, firmaRows, blokKartlari, tanimGroups, raporKartlari,
+      addTx: () => this.openModal('tx'),
+      addDaire: () => this.openModal('daire'),
+      addEk: () => this.openModal('ek'),
+      addFirma: () => this.openModal('firma'),
+      // modal
+      modal: s.modal,
+      modalFields,
+      closeModal: () => this.closeModal(),
+      submitModal: () => this.submitModal(),
+      stop: (e) => e.stopPropagation(),
+      toast: s.toast,
+    };
+  }
+
+  tabStyle(active, accent) {
+    return { display:'flex', alignItems:'center', gap:'6px', padding:'7px 13px', borderRadius:'8px', border:'none', cursor:'pointer', fontSize:'12.5px', fontWeight:700, background: active?'#fff':'transparent', color: active?accent:'#6B7791', boxShadow: active?'0 1px 3px rgba(16,24,40,.1)':'none' };
+  }
+
+  segStyle(active, accent) {
+    return { flex:1, padding:'10px', borderRadius:'8px', border:'none', cursor:'pointer', fontSize:'13.5px', fontWeight:700, background: active?'#fff':'transparent', color: active?'#16213A':'#6B7791', boxShadow: active?'0 1px 3px rgba(16,24,40,.1)':'none' };
+  }
+}
+</script>
+</body>
+</html>
