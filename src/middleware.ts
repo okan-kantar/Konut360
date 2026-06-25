@@ -72,7 +72,12 @@ export default async function proxy(request: NextRequest) {
     const origin = request.headers.get("origin");
     if (origin) {
       try {
-        if (new URL(origin).host !== request.nextUrl.host) {
+        const originHost = new URL(origin).host;
+        const requestHost =
+          request.headers.get("x-forwarded-host") ??
+          request.headers.get("host") ??
+          request.nextUrl.host;
+        if (originHost !== requestHost) {
           return withSecurityHeaders(
             NextResponse.json({ error: "forbidden_origin" }, { status: 403 }),
           );
